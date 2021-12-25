@@ -11,10 +11,23 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="HtmlAgilityPack" />
     <None Remove="Data\" />
+    <None Remove="Chromium.ChromeDriver" />
+    <None Remove="Selenium.WebDriver.ChromeDriver" />
+    <None Remove="Selenium.WebDriver" />
+    <None Remove="System.Reactive.Windows.Forms" />
+    <None Remove="..\.editorconfig" />
+    <None Remove="Selenium.PhantomJS.WebDriver" />
+    <None Remove="Selenium.WebDriver.PhantomJS" />
+    <None Remove="PhantomJS" />
+    <None Remove="Selenium.WebDriver.PhantomJS.Xplatform" />
+    <None Remove="Selenium.WebDriver.PhantomJS.CrossPlatform" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
+    <PackageReference Include="PhantomJS" Version="2.1.1" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.1.0" />
+    <PackageReference Include="Selenium.PhantomJS.WebDriver" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />

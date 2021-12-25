@@ -7,12 +7,12 @@ namespace Chronopost.Print
 {
     public class Print
     {
-        private static string arrived = "Unknow";
-        private static string timeline = "Unknow";
-        private static string change = "Unknow";
-        private static string deliv = "Unknow";
-        private static string RPs = "Unknow";
-        private static bool check_contextData;
+        private static string arrived = "Unknown";
+        private static string timeline = "Unknown";
+        private static string change = "Unknown";
+        private static string deliv = "Unknown";
+        private static string entry = "Unknown";
+        private static string RPs = "Unknown";
 
         private static Dictionary<string, string> event_code = new Dictionary<string, string>(){
             {"DR1", "Déclaratif réceptionné"},
@@ -51,19 +51,22 @@ namespace Chronopost.Print
 
         };
 
-        internal static void Base(DataStruct.Root Last_data)
+        internal static async void Base(DataStruct.Root Last_data)
         {
             arrived = Last_data.shipment.isFinal == true ? "YES" : "NO";
-            if(check_contextData)
-                change = Last_data.shipment.contextData.deliveryChoice != null ? deliveryChoice[Last_data.shipment.contextData.deliveryChoice.deliveryChoice] : "Unknow";
-            deliv = Last_data.shipment.deliveryDate.ToString("d MMMM yyyy H:mm:ss") != "1 January 0001 0:00:00" ? Last_data.shipment.deliveryDate.ToString("d MMMM yyyy H:mm:ss") : "Unknow";
+            if(Check(Last_data))
+                change = Last_data.shipment.contextData.deliveryChoice != null ? deliveryChoice[Last_data.shipment.contextData.deliveryChoice.deliveryChoice] : "Unknown";
+            deliv = Last_data.shipment.deliveryDate.ToString("d MMMM yyyy H:mm:ss") != "1 January 0001 0:00:00" ? Last_data.shipment.deliveryDate.ToString("d MMMM yyyy H:mm:ss") : await Delivery.Delivery.Delivery_dateAsync(Last_data.shipment.urlDetail);
+            entry = Last_data.shipment.entryDate.ToString("d MMMM yyyy H:mm:ss") != "1 January 0001 0:00:00" ? Last_data.shipment.entryDate.ToString("d MMMM yyyy H:mm:ss") : "Unknown";
+            Console.Clear();
+            Console.WriteLine($"Press ENTER to manual refresh or wait {Chronopost.refresh} minutes!\n");
 
             Console.WriteLine(
                 $"Langue: {Last_data.lang},\n" +
                 $"Product ID: {Last_data.shipment.idShip},\n" +
                 $"Type: {Hoder[Last_data.shipment.holder]},\n" +
                 $"Delivery man: {Last_data.shipment.product},\n" +
-                $"Entry Date: {Last_data.shipment.entryDate.ToString("d MMMM yyyy H:mm:ss")},\n" +
+                $"Entry Date: {entry},\n" +
                 $"Delivery Date: {deliv},\n" +
                 $"Can change delivery type: {change},\n" +
                 $"Delivered ? {arrived}\n");
@@ -96,14 +99,15 @@ namespace Chronopost.Print
 
         internal static void RP(DataStruct.Root Last_data)
         {
-            if(check_contextData)
-                RPs = Last_data.shipment.contextData.removalPoint != null ? Last_data.shipment.contextData.removalPoint.name : "Unknow";
+            if(Check(Last_data) == true)
+                RPs = Last_data.shipment.contextData.removalPoint != null ? Last_data.shipment.contextData.removalPoint.name : "Unknown";
             Console.WriteLine($"Removal Point: {RPs}\n");
         }
 
         internal static void URL(DataStruct.Root Last_data)
         {
             Console.WriteLine($"URL: {Last_data.shipment.urlDetail}");
+            Refresh();
         }
 
         internal static void Refresh()
@@ -111,23 +115,42 @@ namespace Chronopost.Print
             Console.Write($"Last Update: {DateTime.Now.ToString("d MMMM yyyy H:mm:ss")}\n");
             TimeSpan t;
 
-            for (double a = Chronopost.refresh * 60; a >= 0; a--)
+            if (Chronopost.refresh < 1)
+                Console.Write("ERROR refresh can't below 1");
+            else
             {
-                t = TimeSpan.FromSeconds(a);
-                string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
+                for (double a = Chronopost.refresh * 60; a >= 0; a--)
+                {
+                    if (WaitOrBreak()) break;
+                    t = TimeSpan.FromSeconds(a);
+                    string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
 
-                Console.Write($"\rNext Update: {answer}");
-                Thread.Sleep(1000);
+                    Console.Write($"\rNext Update: {answer}");
+                    Thread.Sleep(1000);
+                }
             }
+
+            Console.Clear();
         }
 
-        internal static void Check(DataStruct.Root Last_data)
+        static ConsoleKeyInfo cki = new();
+        private static bool WaitOrBreak()
+        {
+            if (Console.KeyAvailable) cki = Console.ReadKey(true);
+            if (cki.Key == ConsoleKey.Enter)
+            {
+                cki = new ConsoleKeyInfo();
+                return true;
+            }
+            return false;
+        }
+
+        static bool Check(DataStruct.Root Last_data)
         {
             if(Last_data.shipment.contextData != null)
-                check_contextData = true;
+                return true;
             else
-                check_contextData = false;
+                return false;
         }
     }
 }
-

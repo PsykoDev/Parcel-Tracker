@@ -1,0 +1,306 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "HtmlAgilityPack/1.11.39": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PhantomJS/2.1.1": {
+        "type": "package"
+      },
+      "Selenium.PhantomJS.WebDriver/2.1.1": {
+        "type": "package",
+        "build": {
+          "build/Selenium.PhantomJS.WebDriver.targets": {}
+        }
+      },
+      "Selenium.WebDriver/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/net5.0/WebDriver.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/WebDriver.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HtmlAgilityPack/1.11.39": {
+      "sha512": "9xk8l+68NaHe3RmfzAOO0A5DcotDO4lAilUnmZpu6h/EpBCfDVrxr7aNClIGK/p3vPiypVzpUCENm72UKfIVjg==",
+      "type": "package",
+      "path": "htmlagilitypack/1.11.39",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmlagilitypack.1.11.39.nupkg.sha512",
+        "htmlagilitypack.nuspec",
+        "lib/Net35/HtmlAgilityPack.dll",
+        "lib/Net35/HtmlAgilityPack.pdb",
+        "lib/Net35/HtmlAgilityPack.xml",
+        "lib/Net40-client/HtmlAgilityPack.dll",
+        "lib/Net40-client/HtmlAgilityPack.pdb",
+        "lib/Net40-client/HtmlAgilityPack.xml",
+        "lib/Net40/HtmlAgilityPack.XML",
+        "lib/Net40/HtmlAgilityPack.dll",
+        "lib/Net40/HtmlAgilityPack.pdb",
+        "lib/Net45/HtmlAgilityPack.XML",
+        "lib/Net45/HtmlAgilityPack.dll",
+        "lib/Net45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.XML",
+        "lib/NetCore45/HtmlAgilityPack.dll",
+        "lib/NetCore45/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.3/HtmlAgilityPack.dll",
+        "lib/netstandard1.3/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.xml",
+        "lib/netstandard1.6/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.6/HtmlAgilityPack.dll",
+        "lib/netstandard1.6/HtmlAgilityPack.pdb",
+        "lib/netstandard1.6/HtmlAgilityPack.xml",
+        "lib/netstandard2.0/HtmlAgilityPack.deps.json",
+        "lib/netstandard2.0/HtmlAgilityPack.dll",
+        "lib/netstandard2.0/HtmlAgilityPack.pdb",
+        "lib/netstandard2.0/HtmlAgilityPack.xml",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.XML",
+        "lib/uap10.0/HtmlAgilityPack.dll",
+        "lib/uap10.0/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.pri"
+      ]
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "PhantomJS/2.1.1": {
+      "sha512": "31xkN06TjBGQ9/8sGkm8IAN4DM/gMDChryu9Pp1ng9OK/xLPL2ZNbAgRCaB2g9vDkUDvhHjBEtP9JRenMDiHUg==",
+      "type": "package",
+      "path": "phantomjs/2.1.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/phantomjs-license.txt",
+        "phantomjs.2.1.1.nupkg.sha512",
+        "phantomjs.nuspec",
+        "tools/install.ps1",
+        "tools/phantomjs/ChangeLog",
+        "tools/phantomjs/LICENSE.BSD",
+        "tools/phantomjs/README.md",
+        "tools/phantomjs/examples/arguments.js",
+        "tools/phantomjs/examples/child_process-examples.js",
+        "tools/phantomjs/examples/colorwheel.js",
+        "tools/phantomjs/examples/countdown.js",
+        "tools/phantomjs/examples/detectsniff.js",
+        "tools/phantomjs/examples/echoToFile.js",
+        "tools/phantomjs/examples/features.js",
+        "tools/phantomjs/examples/fibo.js",
+        "tools/phantomjs/examples/hello.js",
+        "tools/phantomjs/examples/injectme.js",
+        "tools/phantomjs/examples/loadspeed.js",
+        "tools/phantomjs/examples/loadurlwithoutcss.js",
+        "tools/phantomjs/examples/modernizr.js",
+        "tools/phantomjs/examples/module.js",
+        "tools/phantomjs/examples/netlog.js",
+        "tools/phantomjs/examples/netsniff.js",
+        "tools/phantomjs/examples/openurlwithproxy.js",
+        "tools/phantomjs/examples/outputEncoding.js",
+        "tools/phantomjs/examples/page_events.js",
+        "tools/phantomjs/examples/pagecallback.js",
+        "tools/phantomjs/examples/phantomwebintro.js",
+        "tools/phantomjs/examples/post.js",
+        "tools/phantomjs/examples/postjson.js",
+        "tools/phantomjs/examples/postserver.js",
+        "tools/phantomjs/examples/printenv.js",
+        "tools/phantomjs/examples/printheaderfooter.js",
+        "tools/phantomjs/examples/printmargins.js",
+        "tools/phantomjs/examples/rasterize.js",
+        "tools/phantomjs/examples/render_multi_url.js",
+        "tools/phantomjs/examples/responsive-screenshot.js",
+        "tools/phantomjs/examples/run-jasmine.js",
+        "tools/phantomjs/examples/run-jasmine2.js",
+        "tools/phantomjs/examples/run-qunit.js",
+        "tools/phantomjs/examples/scandir.js",
+        "tools/phantomjs/examples/server.js",
+        "tools/phantomjs/examples/serverkeepalive.js",
+        "tools/phantomjs/examples/simpleserver.js",
+        "tools/phantomjs/examples/sleepsort.js",
+        "tools/phantomjs/examples/stdin-stdout-stderr.js",
+        "tools/phantomjs/examples/universe.js",
+        "tools/phantomjs/examples/unrandomize.js",
+        "tools/phantomjs/examples/useragent.js",
+        "tools/phantomjs/examples/version.js",
+        "tools/phantomjs/examples/waitfor.js",
+        "tools/phantomjs/examples/walk_through_frames.js",
+        "tools/phantomjs/phantomjs.exe",
+        "tools/phantomjs/third-party.txt",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "Selenium.PhantomJS.WebDriver/2.1.1": {
+      "sha512": "RkbBQqVh47WZWQjwl5iM/FFzY6ST89w9Pts31Vft36H/10gCLipRoSsM/ewkSm8EUWibagOVyAOQDqsL5RSzhw==",
+      "type": "package",
+      "path": "selenium.phantomjs.webdriver/2.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Selenium.PhantomJS.WebDriver.targets",
+        "driver/phantomjs.exe",
+        "selenium.phantomjs.webdriver.2.1.1.nupkg.sha512",
+        "selenium.phantomjs.webdriver.nuspec"
+      ]
+    },
+    "Selenium.WebDriver/4.1.0": {
+      "sha512": "d4smisz4a/wJCM2TzkKTl+BLfvZUTvaobhKElDfCVZlvY8ThsC8VAoBNWTlg1H/GGzIP//yVGko/W0FILTgkYA==",
+      "type": "package",
+      "path": "selenium.webdriver/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/icon.png",
+        "lib/net45/WebDriver.dll",
+        "lib/net46/WebDriver.dll",
+        "lib/net47/WebDriver.dll",
+        "lib/net48/WebDriver.dll",
+        "lib/net5.0/WebDriver.dll",
+        "lib/netstandard2.0/WebDriver.dll",
+        "lib/netstandard2.1/WebDriver.dll",
+        "selenium.webdriver.4.1.0.nupkg.sha512",
+        "selenium.webdriver.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "HtmlAgilityPack >= 1.11.39",
+      "Newtonsoft.Json >= 13.0.1",
+      "PhantomJS >= 2.1.1",
+      "Selenium.PhantomJS.WebDriver >= 2.1.1",
+      "Selenium.WebDriver >= 4.1.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/psyko/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/psyko/Projects/Chronopost/Chronopost/Chronopost.csproj",
+      "projectName": "Chronopost",
+      "projectPath": "/Users/psyko/Projects/Chronopost/Chronopost/Chronopost.csproj",
+      "packagesPath": "/Users/psyko/.nuget/packages/",
+      "outputPath": "/Users/psyko/Projects/Chronopost/Chronopost/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/psyko/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "HtmlAgilityPack": {
+            "target": "Package",
+            "version": "[1.11.39, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          },
+          "PhantomJS": {
+            "target": "Package",
+            "version": "[2.1.1, )"
+          },
+          "Selenium.PhantomJS.WebDriver": {
+            "target": "Package",
+            "version": "[2.1.1, )"
+          },
+          "Selenium.WebDriver": {
+            "target": "Package",
+            "version": "[4.1.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

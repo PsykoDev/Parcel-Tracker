@@ -7,7 +7,7 @@ namespace Chronopost.Web
 {
     public class Web
     {
-        internal static WebResponse? Http(string uri, string iP)
+        internal static WebResponse? Http(string uri)
         {
             try
             {
@@ -15,10 +15,10 @@ namespace Chronopost.Web
                 WebHeaderCollection header = request.Headers;
                 request.Method = "GET";
                 header.Add("X-Okapi-Key", Chronopost.Okapi_key);
-                header.Add("X-Forwarded-For", iP);
+                header.Add("X-Forwarded-For", getIP());
                 header.Add("accept: application/json");
                 request.ContentType = "application/json";
-                request.Timeout = 1200;
+                request.Timeout = 5000;
 
                 WebResponse response = request.GetResponse();
                 return response;
@@ -39,8 +39,7 @@ namespace Chronopost.Web
 
         internal static string getIP()
         {
-            string IP = new WebClient().DownloadString("https://api.ipify.org");
-            return IP;
+            return new WebClient().DownloadString("https://api.ipify.org");
         }
     }
 }

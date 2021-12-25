@@ -11,15 +11,12 @@ namespace Chronopost.Build
     {
         internal static DataStruct.Root Data(WebResponse response)
         {
-            using (Stream dataStream = response.GetResponseStream())
-            {
-                StreamReader reader = new StreamReader(dataStream);
-                string responseFromServer = reader.ReadToEnd();
+            using Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
 
-                DataStruct.Root myDeserializedClass = JsonConvert.DeserializeObject<DataStruct.Root>(responseFromServer);
-                return myDeserializedClass;
-
-            }
+            DataStruct.Root myDeserializedClass = JsonConvert.DeserializeObject<DataStruct.Root>(responseFromServer);
+            return myDeserializedClass;
         }
     }
 }

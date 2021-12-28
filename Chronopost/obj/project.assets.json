@@ -20,15 +20,6 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "PhantomJS/2.1.1": {
-        "type": "package"
-      },
-      "Selenium.PhantomJS.WebDriver/2.1.1": {
-        "type": "package",
-        "build": {
-          "build/Selenium.PhantomJS.WebDriver.targets": {}
-        }
-      },
       "Selenium.WebDriver/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -39,6 +30,12 @@
         },
         "runtime": {
           "lib/net5.0/WebDriver.dll": {}
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/96.0.4664.4500": {
+        "type": "package",
+        "build": {
+          "build/Selenium.WebDriver.ChromeDriver.targets": {}
         }
       }
     }
@@ -119,84 +116,6 @@
         "packageIcon.png"
       ]
     },
-    "PhantomJS/2.1.1": {
-      "sha512": "31xkN06TjBGQ9/8sGkm8IAN4DM/gMDChryu9Pp1ng9OK/xLPL2ZNbAgRCaB2g9vDkUDvhHjBEtP9JRenMDiHUg==",
-      "type": "package",
-      "path": "phantomjs/2.1.1",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "content/phantomjs-license.txt",
-        "phantomjs.2.1.1.nupkg.sha512",
-        "phantomjs.nuspec",
-        "tools/install.ps1",
-        "tools/phantomjs/ChangeLog",
-        "tools/phantomjs/LICENSE.BSD",
-        "tools/phantomjs/README.md",
-        "tools/phantomjs/examples/arguments.js",
-        "tools/phantomjs/examples/child_process-examples.js",
-        "tools/phantomjs/examples/colorwheel.js",
-        "tools/phantomjs/examples/countdown.js",
-        "tools/phantomjs/examples/detectsniff.js",
-        "tools/phantomjs/examples/echoToFile.js",
-        "tools/phantomjs/examples/features.js",
-        "tools/phantomjs/examples/fibo.js",
-        "tools/phantomjs/examples/hello.js",
-        "tools/phantomjs/examples/injectme.js",
-        "tools/phantomjs/examples/loadspeed.js",
-        "tools/phantomjs/examples/loadurlwithoutcss.js",
-        "tools/phantomjs/examples/modernizr.js",
-        "tools/phantomjs/examples/module.js",
-        "tools/phantomjs/examples/netlog.js",
-        "tools/phantomjs/examples/netsniff.js",
-        "tools/phantomjs/examples/openurlwithproxy.js",
-        "tools/phantomjs/examples/outputEncoding.js",
-        "tools/phantomjs/examples/page_events.js",
-        "tools/phantomjs/examples/pagecallback.js",
-        "tools/phantomjs/examples/phantomwebintro.js",
-        "tools/phantomjs/examples/post.js",
-        "tools/phantomjs/examples/postjson.js",
-        "tools/phantomjs/examples/postserver.js",
-        "tools/phantomjs/examples/printenv.js",
-        "tools/phantomjs/examples/printheaderfooter.js",
-        "tools/phantomjs/examples/printmargins.js",
-        "tools/phantomjs/examples/rasterize.js",
-        "tools/phantomjs/examples/render_multi_url.js",
-        "tools/phantomjs/examples/responsive-screenshot.js",
-        "tools/phantomjs/examples/run-jasmine.js",
-        "tools/phantomjs/examples/run-jasmine2.js",
-        "tools/phantomjs/examples/run-qunit.js",
-        "tools/phantomjs/examples/scandir.js",
-        "tools/phantomjs/examples/server.js",
-        "tools/phantomjs/examples/serverkeepalive.js",
-        "tools/phantomjs/examples/simpleserver.js",
-        "tools/phantomjs/examples/sleepsort.js",
-        "tools/phantomjs/examples/stdin-stdout-stderr.js",
-        "tools/phantomjs/examples/universe.js",
-        "tools/phantomjs/examples/unrandomize.js",
-        "tools/phantomjs/examples/useragent.js",
-        "tools/phantomjs/examples/version.js",
-        "tools/phantomjs/examples/waitfor.js",
-        "tools/phantomjs/examples/walk_through_frames.js",
-        "tools/phantomjs/phantomjs.exe",
-        "tools/phantomjs/third-party.txt",
-        "tools/uninstall.ps1"
-      ]
-    },
-    "Selenium.PhantomJS.WebDriver/2.1.1": {
-      "sha512": "RkbBQqVh47WZWQjwl5iM/FFzY6ST89w9Pts31Vft36H/10gCLipRoSsM/ewkSm8EUWibagOVyAOQDqsL5RSzhw==",
-      "type": "package",
-      "path": "selenium.phantomjs.webdriver/2.1.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/Selenium.PhantomJS.WebDriver.targets",
-        "driver/phantomjs.exe",
-        "selenium.phantomjs.webdriver.2.1.1.nupkg.sha512",
-        "selenium.phantomjs.webdriver.nuspec"
-      ]
-    },
     "Selenium.WebDriver/4.1.0": {
       "sha512": "d4smisz4a/wJCM2TzkKTl+BLfvZUTvaobhKElDfCVZlvY8ThsC8VAoBNWTlg1H/GGzIP//yVGko/W0FILTgkYA==",
       "type": "package",
@@ -215,15 +134,32 @@
         "selenium.webdriver.4.1.0.nupkg.sha512",
         "selenium.webdriver.nuspec"
       ]
+    },
+    "Selenium.WebDriver.ChromeDriver/96.0.4664.4500": {
+      "sha512": "7bH+2/bX4IqPXxnMsbD820pCb1DFLeESIbjpUL/Zgq5wfKJHTxtknrQ1wnlMJmWtbpoNcj6Zck7OfoIVstl3zQ==",
+      "type": "package",
+      "path": "selenium.webdriver.chromedriver/96.0.4664.4500",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/DefinePropertiesChromeDriver.targets",
+        "build/Selenium.WebDriver.ChromeDriver.targets",
+        "driver/linux64/chromedriver",
+        "driver/mac64/chromedriver",
+        "driver/win32/chromedriver.exe",
+        "nupkg-icon.png",
+        "selenium.webdriver.chromedriver.96.0.4664.4500.nupkg.sha512",
+        "selenium.webdriver.chromedriver.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "HtmlAgilityPack >= 1.11.39",
       "Newtonsoft.Json >= 13.0.1",
-      "PhantomJS >= 2.1.1",
-      "Selenium.PhantomJS.WebDriver >= 2.1.1",
-      "Selenium.WebDriver >= 4.1.0"
+      "Selenium.WebDriver >= 4.1.0",
+      "Selenium.WebDriver.ChromeDriver >= 96.0.4664.4500"
     ]
   },
   "packageFolders": {
@@ -271,17 +207,13 @@
             "target": "Package",
             "version": "[13.0.1, )"
           },
-          "PhantomJS": {
-            "target": "Package",
-            "version": "[2.1.1, )"
-          },
-          "Selenium.PhantomJS.WebDriver": {
-            "target": "Package",
-            "version": "[2.1.1, )"
-          },
           "Selenium.WebDriver": {
             "target": "Package",
             "version": "[4.1.0, )"
+          },
+          "Selenium.WebDriver.ChromeDriver": {
+            "target": "Package",
+            "version": "[96.0.4664.4500, )"
           }
         },
         "imports": [

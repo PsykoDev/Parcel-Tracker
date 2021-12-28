@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -9,6 +10,7 @@ namespace Chronopost.Delivery
 {
     public class Delivery
     {
+        static CultureInfo provider = CultureInfo.InvariantCulture;
 
         public static async Task<string> Delivery_dateAsync(string url)
         {
@@ -33,15 +35,17 @@ namespace Chronopost.Delivery
                 foreach (HtmlNode node in doc.DocumentNode.SelectNodes("//div[@class='ch-colis-information']"))
                 {
                     string value = node.InnerText;
-                    value = value.Replace("\t", "").Replace("Date de livraison estimée", "");
-                    string trim = value.Trim();
-                    return trim;
+                    if(value.Contains("paration")) return "Unknown";
+                    var reg = Regex.Replace(value, @"[A-Za-z\téà<br>']+", "");
+                    var whitepsace = Regex.Replace(reg, @"\s+", " ").Trim();
+                    DateTime DT = DateTime.ParseExact(whitepsace, new string[] { "dd.MM.yyyy H:mm", "dd-MM-yyyy H:mm", "dd/MM/yyyy H:mm" }, provider, DateTimeStyles.None);
+                    return DT.ToString("d MMMM yyyy H:mm");
                 }
-                return "Uknown";
+                return "Unknown";
             }
             catch
             {
-                return "Uknown";
+                return "Unknown";
             }
         }
     }

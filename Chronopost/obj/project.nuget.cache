@@ -1,14 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "eSx2RrLlZcrveTK1Aus/SnnB0Z6Gw3hYDaE6wP6dWfyWXwT8YoBwmZKHPoB0EC8ry2LB8chsCIoqYiAvIrB98g==",
+  "dgSpecHash": "Q1fyHIm20J5NnzgOZ3zy5l1XeA8A8LktkO1XHQ97xfl50Wxs+ESMzWKd7w9ORgHnO/KY61mKof6mKkj8G6mYxw==",
   "success": true,
   "projectFilePath": "/Users/psyko/Projects/Chronopost/Chronopost/Chronopost.csproj",
   "expectedPackageFiles": [
     "/Users/psyko/.nuget/packages/htmlagilitypack/1.11.39/htmlagilitypack.1.11.39.nupkg.sha512",
     "/Users/psyko/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
-    "/Users/psyko/.nuget/packages/phantomjs/2.1.1/phantomjs.2.1.1.nupkg.sha512",
-    "/Users/psyko/.nuget/packages/selenium.phantomjs.webdriver/2.1.1/selenium.phantomjs.webdriver.2.1.1.nupkg.sha512",
-    "/Users/psyko/.nuget/packages/selenium.webdriver/4.1.0/selenium.webdriver.4.1.0.nupkg.sha512"
+    "/Users/psyko/.nuget/packages/selenium.webdriver/4.1.0/selenium.webdriver.4.1.0.nupkg.sha512",
+    "/Users/psyko/.nuget/packages/selenium.webdriver.chromedriver/96.0.4664.4500/selenium.webdriver.chromedriver.96.0.4664.4500.nupkg.sha512"
   ],
   "logs": []
 }

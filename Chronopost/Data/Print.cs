@@ -56,10 +56,10 @@ namespace Chronopost.Print
             arrived = Last_data.shipment.isFinal == true ? "YES" : "NO";
             if(Check(Last_data))
                 change = Last_data.shipment.contextData.deliveryChoice != null ? deliveryChoice[Last_data.shipment.contextData.deliveryChoice.deliveryChoice] : "Unknown";
-            deliv = Last_data.shipment.deliveryDate.ToString("d MMMM yyyy H:mm:ss") != "1 January 0001 0:00:00" ? Last_data.shipment.deliveryDate.ToString("d MMMM yyyy H:mm:ss") : await Delivery.Delivery.Delivery_dateAsync(Last_data.shipment.urlDetail);
-            entry = Last_data.shipment.entryDate.ToString("d MMMM yyyy H:mm:ss") != "1 January 0001 0:00:00" ? Last_data.shipment.entryDate.ToString("d MMMM yyyy H:mm:ss") : "Unknown";
+            deliv = Last_data.shipment.deliveryDate.ToString("d MMMM yyyy H:mm") != DateTime.MinValue.ToString("d MMMM yyyy H:mm") ? Last_data.shipment.deliveryDate.ToString("d MMMM yyyy H:mm") : await Delivery.Delivery.Delivery_dateAsync(Last_data.shipment.urlDetail);
+            entry = Last_data.shipment.entryDate.ToString("d MMMM yyyy H:mm") != DateTime.MinValue.ToString("d MMMM yyyy H:mm") ? Last_data.shipment.entryDate.ToString("d MMMM yyyy H:mm") : "Unknown";
             Console.Clear();
-            Console.WriteLine($"Press ENTER to manual refresh or wait {Chronopost.refresh} minutes!\n");
+            Console.WriteLine($"Press ENTER to manually refresh or wait {Chronopost.refresh} minutes!\n");
 
             Console.WriteLine(
                 $"Langue: {Last_data.lang},\n" +
@@ -70,6 +70,12 @@ namespace Chronopost.Print
                 $"Delivery Date: {deliv},\n" +
                 $"Can change delivery type: {change},\n" +
                 $"Delivered ? {arrived}\n");
+            if (!deliv.Contains("Unknown"))
+            {
+                Console.Title = $"Delivery Date: {deliv}";
+            }
+            else
+                Console.Title = "Parcel Tracker";
         }
 
         internal static void TimeLine(DataStruct.Root Last_data)
@@ -91,7 +97,7 @@ namespace Chronopost.Print
             for (int i = 0; i < Last_data.shipment.@event.Count; i++)
             {
                 Console.WriteLine($"delivery steps: \n\t" +
-                    $"{Last_data.shipment.@event[i].date.ToString("d MMMM yyyy H:mm:ss")}\n\t" +
+                    $"{Last_data.shipment.@event[i].date.ToString("d MMMM yyyy H:mm")}\n\t" +
                     $"Progress: {Last_data.shipment.@event[i].label}\n\t" +
                     $"Code: {Last_data.shipment.@event[i].code} : {event_code[Last_data.shipment.@event[i].code]}\n");
             }
@@ -99,9 +105,10 @@ namespace Chronopost.Print
 
         internal static void RP(DataStruct.Root Last_data)
         {
-            if(Check(Last_data) == true)
+            if(Check(Last_data))
                 RPs = Last_data.shipment.contextData.removalPoint != null ? Last_data.shipment.contextData.removalPoint.name : "Unknown";
-            Console.WriteLine($"Removal Point: {RPs}\n");
+            Console.WriteLine($"Removal Point: \n\t" +
+                $"{RPs}\n");
         }
 
         internal static void URL(DataStruct.Root Last_data)
@@ -147,10 +154,8 @@ namespace Chronopost.Print
 
         static bool Check(DataStruct.Root Last_data)
         {
-            if(Last_data.shipment.contextData != null)
-                return true;
-            else
-                return false;
+            if(Last_data.shipment.contextData != null) return true;
+            else return false;
         }
     }
 }

@@ -12,7 +12,4 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="/Users/psyko/.nuget/packages/" />
   </ItemGroup>
-  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgPhantomJS Condition=" '$(PkgPhantomJS)' == '' ">/Users/psyko/.nuget/packages/phantomjs/2.1.1</PkgPhantomJS>
-  </PropertyGroup>
 </Project>

@@ -38,8 +38,8 @@ namespace Chronopost.Delivery
                     if(value.Contains("paration")) return "Unknown";
                     var reg = Regex.Replace(value, @"[A-Za-z\téà<br>']+", "");
                     var whitepsace = Regex.Replace(reg, @"\s+", " ").Trim();
-                    DateTime DT = DateTime.ParseExact(whitepsace, new string[] { "dd.MM.yyyy H:mm", "dd-MM-yyyy H:mm", "dd/MM/yyyy H:mm" }, provider, DateTimeStyles.None);
-                    return DT.ToString("d MMMM yyyy H:mm");
+                    var split = Split(whitepsace);
+                    return split;
                 }
                 return "Unknown";
             }
@@ -47,6 +47,16 @@ namespace Chronopost.Delivery
             {
                 return "Unknown";
             }
+        }
+
+        public static string Split(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return value;
+            string[] subs = value.Split(' ');
+            DateTime DT = DateTime.ParseExact(subs[0], new string[] { "dd/MM/yyyy" }, provider, DateTimeStyles.None);
+            DateTime DT1 = DateTime.ParseExact(subs[1], new string[] { "H:mm" }, provider, DateTimeStyles.None);
+            DateTime DT2 = DateTime.ParseExact(subs[2], new string[] { "H:mm" }, provider, DateTimeStyles.None);
+            return $"{DT.ToString("d MMMM yyyy")} {DT1.ToString("H:mm")} -> {DT2.ToString("H:mm")}";
         }
     }
 }

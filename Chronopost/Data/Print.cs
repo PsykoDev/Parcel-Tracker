@@ -1,5 +1,6 @@
 ﻿using System;
 using Chronopost.Data;
+using Chronopost.Data.TableauBuild;
 
 #pragma warning disable CS8602
 
@@ -36,6 +37,28 @@ namespace Chronopost.Print
             {"DI2", "Distribué à l'expéditeur"}
         };
 
+        private static Dictionary<string, string> event_codeEN = new Dictionary<string, string>(){
+            {"DR1", "Declaration received"},
+            {"PC1", "Supported"},
+            {"PC2", "Picked up in the country of shipment"},
+            {"ET1", "In process"},
+            {"ET2", "Being processed in the country of dispatch"},
+            {"ET3", "Being processed in the country of destination"},
+            {"ET4", "Being processed in a transit country"},
+            {"EP1", "Awaiting presentation"},
+            {"DO1", "Customs Entry"},
+            {"DO2", "Customs Exit"},
+            {"DO3", "Detained at Customs"},
+            {"PB1", "Problem in progress"},
+            {"PB2", "Problem solved"},
+            {"MD2", "Distributed"},
+            {"ND1", "Not distributable"},
+            {"AG1", "Waiting to be collected at the counter"},
+            {"RE1", "Returned to sender"},
+            {"DI1", "Distributed"},
+            {"DI2", "Distributed to sender"}
+        };
+
         private static Dictionary<int, string> Hoder = new Dictionary<int, string>(){
             {1, "courrier nat"},
             {2, "courrier inter"},
@@ -48,7 +71,6 @@ namespace Chronopost.Print
             {0, "No"},
             {1, "Possible"},
             {2, "Chosen"}
-
         };
 
         internal static async void Base(DataStruct.Root Last_data)
@@ -66,10 +88,14 @@ namespace Chronopost.Print
                 $"Product ID: {Last_data.shipment.idShip},\n" +
                 $"Type: {Hoder[Last_data.shipment.holder]},\n" +
                 $"Delivery man: {Last_data.shipment.product},\n" +
-                $"Entry Date: {entry},\n" +
-                $"Delivery Date: {deliv},\n" +
+              /*$"Entry Date: {entry},\n" +
+                $"Delivery Date: {deliv},\n" +*/
                 $"Can change delivery type: {change},\n" +
                 $"Delivered ? {arrived}\n");
+
+            TableauBuild.BuildFind1("Entry Date", "Delivery Date", entry, deliv);
+
+
             if (!deliv.Contains("Unknown"))
             {
                 Console.Title = $"Delivery Date: {deliv}";
@@ -84,22 +110,47 @@ namespace Chronopost.Print
             {
                 if (v.status == true)
                 {
-                    timeline = $"{v.shortLabel}\n\t" +
-                        $"{v.longLabel}";
+                    /*timeline = $"{v.shortLabel}\n\t" +
+                        $"{v.longLabel}";*/
+                    timeline = $"{v.shortLabel}";
                 }
             }
 
-            Console.WriteLine($"TimeLine: \n\t{timeline}");
+            //Console.WriteLine($"TimeLine: \n\t{timeline}");
         }
 
         internal static void Step(DataStruct.Root Last_data)
         {
+            string result = "";
             for (int i = 0; i < Last_data.shipment.@event.Count; i++)
             {
-                Console.WriteLine($"delivery steps: \n\t" +
+                switch (Chronopost.Lang)
+                {
+                    case "fr_FR":
+                        result = event_code[Last_data.shipment.@event[i].code];
+                        break;
+                    case "en_GB":
+                        result = event_codeEN[Last_data.shipment.@event[i].code];
+                        break;
+                    case "de_DE":
+                        result = event_codeEN[Last_data.shipment.@event[i].code];
+                        break;
+                    case "es_ES":
+                        result = event_codeEN[Last_data.shipment.@event[i].code];
+                        break;
+                    case "it_IT":
+                        result = event_codeEN[Last_data.shipment.@event[i].code];
+                        break;
+                    case "nl_NL":
+                        result = event_codeEN[Last_data.shipment.@event[i].code];
+                        break;
+                }
+                /*Console.WriteLine($"delivery steps: \n\t" +
                     $"{Last_data.shipment.@event[i].date.ToString("d MMMM yyyy H:mm")}\n\t" +
                     $"Progress: {Last_data.shipment.@event[i].label}\n\t" +
-                    $"Code: {Last_data.shipment.@event[i].code} : {event_code[Last_data.shipment.@event[i].code]}\n");
+                    $"Code: {Last_data.shipment.@event[i].code} : {result}\n");*/
+
+                TableauBuild.BuildFind("TimeLine", "delivery steps",timeline, $"{Last_data.shipment.@event[i].label}", $"{Last_data.shipment.@event[i].date.ToString("d/MM/yyyy H:mm")}");
             }
         }
 

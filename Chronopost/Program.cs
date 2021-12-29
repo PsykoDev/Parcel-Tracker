@@ -10,7 +10,7 @@ namespace Chronopost
 {
     public class Chronopost
     {
-        // CONFIG XP473275191FR
+        // CONFIG
         public static string Parcel_Number = "";
         public static readonly string Okapi_key ="";
         public static readonly string Lang = "fr_FR"; // fr_FR, en_GB, de_DE, es_ES, it_IT, nl_NL
@@ -22,7 +22,7 @@ namespace Chronopost
 
         public static void Main(string[] args)
         {
-            if (Parcel_Number == "")
+            if (Parcel_Number == String.Empty)
             {
                 for (int i = 0; i < args.Length; i++)
                 {

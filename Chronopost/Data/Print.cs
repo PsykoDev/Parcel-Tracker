@@ -88,10 +88,15 @@ namespace Chronopost.Print
                 $"Product ID: {Last_data.shipment.idShip},\n" +
                 $"Type: {Hoder[Last_data.shipment.holder]},\n" +
                 $"Delivery man: {Last_data.shipment.product},\n" +
-              /*$"Entry Date: {entry},\n" +
-                $"Delivery Date: {deliv},\n" +*/
-                $"Can change delivery type: {change},\n" +
-                $"Delivered ? {arrived}\n");
+                /*$"Entry Date: {entry},\n" +
+                  $"Delivery Date: {deliv},\n" +*/
+                $"Can change delivery type: {change},");
+            if (Last_data.shipment.isFinal)
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+            else
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine($"Delivered ? {arrived}\n");
+            Console.ResetColor();
 
             TableauBuild.BuildFind1("Entry Date", "Delivery Date", entry, deliv);
 

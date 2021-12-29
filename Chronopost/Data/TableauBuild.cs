@@ -6,11 +6,17 @@ namespace Chronopost.Data.TableauBuild
         static int tableWidth = 100;
         internal static void BuildFind(string RowLeft, string RowRight, string printLeft, string printright, string Raw1Right = "", string Raw1Left = "")
         {
+            if (printLeft.StartsWith("4"))
+            {
+               Console.ForegroundColor = ConsoleColor.DarkGreen;
+               printLeft = printLeft.Replace("4", "");
+            }
             PrintLine();
             PrintRow(RowLeft, RowRight);
             PrintRow($"{Raw1Left}", $"{Raw1Right}");
             PrintLine();
             print(printLeft, printright);
+            Console.ResetColor();
         }
 
         internal static void BuildFind1(string RowLeft, string RowRight, string printLeft, string printright)

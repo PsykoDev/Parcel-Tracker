@@ -64,13 +64,20 @@ namespace Chronopost.Print
             {2, "courrier inter"},
             {3, "chronopost"},
             {4, "colissimo"}
-
         };
 
         private static Dictionary<int, string> deliveryChoice = new Dictionary<int, string>(){
             {0, "No"},
             {1, "Possible"},
             {2, "Chosen"}
+        };
+
+        private static Dictionary<int, string> timelineData = new Dictionary<int, string>(){
+            {1, "En préparation chez l'expéditeur"},
+            {2, "Pris en charge par Chronopost"},
+            {3, "En cours d'acheminement"},
+            {4, "Envoi en cours de livraison"},
+            {5, "Livré"}
         };
 
         internal static async void Base(DataStruct.Root Last_data)
@@ -88,8 +95,6 @@ namespace Chronopost.Print
                 $"Product ID: {Last_data.shipment.idShip},\n" +
                 $"Type: {Hoder[Last_data.shipment.holder]},\n" +
                 $"Delivery man: {Last_data.shipment.product},\n" +
-                /*$"Entry Date: {entry},\n" +
-                  $"Delivery Date: {deliv},\n" +*/
                 $"Can change delivery type: {change},");
             if (Last_data.shipment.isFinal)
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -113,15 +118,17 @@ namespace Chronopost.Print
         {
             foreach (DataStruct.Timeline v in Last_data.shipment.timeline)
             {
-                if (v.status == true)
+                if (v.id == 4 && v.status == true)
                 {
-                    /*timeline = $"{v.shortLabel}\n\t" +
-                        $"{v.longLabel}";*/
-                    timeline = $"{v.shortLabel}";
+                    if (v.id == 5 && v.status != true)
+                    {
+                        timeline = $"{v.id}{v.shortLabel}";
+                        return;
+                    }
                 }
+                if (v.status == true)
+                    timeline = $"{v.shortLabel}";
             }
-
-            //Console.WriteLine($"TimeLine: \n\t{timeline}");
         }
 
         internal static void Step(DataStruct.Root Last_data)
@@ -150,11 +157,6 @@ namespace Chronopost.Print
                         result = event_codeEN[Last_data.shipment.@event[i].code];
                         break;
                 }
-                /*Console.WriteLine($"delivery steps: \n\t" +
-                    $"{Last_data.shipment.@event[i].date.ToString("d MMMM yyyy H:mm")}\n\t" +
-                    $"Progress: {Last_data.shipment.@event[i].label}\n\t" +
-                    $"Code: {Last_data.shipment.@event[i].code} : {result}\n");*/
-
                 TableauBuild.BuildFind("TimeLine", "delivery steps",timeline, $"{Last_data.shipment.@event[i].label}", $"{Last_data.shipment.@event[i].date.ToString("d/MM/yyyy H:mm")}");
             }
         }

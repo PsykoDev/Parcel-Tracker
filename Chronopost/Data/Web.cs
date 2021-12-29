@@ -25,13 +25,32 @@ namespace Chronopost.Web
             }
             catch (WebException e)
             {
-                Console.WriteLine("\nWebException is thrown. \nMessage :" + e.Message);
-                if (e.Status == WebExceptionStatus.ProtocolError)
+                HttpWebResponse response = null;
+                HttpStatusCode statusCode;
+                response = (HttpWebResponse)e.Response;
+                statusCode = response.StatusCode;
+                switch ((int)statusCode)
                 {
-                    Console.WriteLine("Status Code : {0}", ((HttpWebResponse)e.Response).StatusCode);
-                    Console.WriteLine("Status Description : {0}", ((HttpWebResponse)e.Response).StatusDescription);
-                    Console.WriteLine("Server : {0}", ((HttpWebResponse)e.Response).Server);
-                    return null;
+                    case 200:
+                        break;
+                    case 207:
+                        Console.WriteLine("Réponse à statut multiple");
+                        break;
+                    case 400:
+                        Console.WriteLine("Numéro invalide (ne respecte pas la syntaxe définie)");
+                        break;
+                    case 401:
+                        Console.WriteLine("Non-autorisé (absence de la clé Okapi)");
+                        break;
+                    case 404:
+                        Console.WriteLine("Ressource non trouvée");
+                        break;
+                    case 500:
+                        Console.WriteLine("Erreur système (message non généré par l’application)");
+                        break;
+                    case 504:
+                        Console.WriteLine("Service indisponible (erreur technique sur service tiers)");
+                        break;
                 }
                 return null;
             }

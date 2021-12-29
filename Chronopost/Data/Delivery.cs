@@ -31,7 +31,7 @@ namespace Chronopost.Delivery
 
                 var doc = new HtmlDocument();
                 doc.LoadHtml(html);
-
+                driver.Quit();
                 foreach (HtmlNode node in doc.DocumentNode.SelectNodes("//div[@class='ch-colis-information']"))
                 {
                     string value = node.InnerText;

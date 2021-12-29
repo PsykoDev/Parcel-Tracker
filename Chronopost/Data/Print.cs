@@ -120,11 +120,8 @@ namespace Chronopost.Print
             {
                 if (v.id == 4 && v.status == true)
                 {
-                    if (v.id == 5 && v.status != true)
-                    {
-                        timeline = $"{v.id}{v.shortLabel}";
-                        return;
-                    }
+                    timeline = $"{v.id}{v.shortLabel}";
+                    return;
                 }
                 if (v.status == true)
                     timeline = $"{v.shortLabel}";
